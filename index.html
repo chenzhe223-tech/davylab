@@ -109,7 +109,7 @@ function renderProjectPreview(p){
     if(attempt<maxAttempts)setTimeout(()=>requestShot(),1400);
     else fail('暂时无法获取网页截图');
    };
-   img.src=shot+'&retry='+Date.now()+'-'+attempt;
+   img.removeAttribute('src');setTimeout(()=>{if(current())img.src=shot},80);
   }
   function startPreview(){
    if(!current())return;
