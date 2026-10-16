@@ -55,7 +55,7 @@ const mark = (status, name, detail = '') => {
     try {
       await desktop.waitForFunction(() => {
         const i = document.querySelector('#productPreviewImage');
-        return i && i.complete && i.naturalWidth >= 300 && i.style.visibility !== 'hidden';
+        return i && i.complete && i.naturalWidth >= 640 && i.naturalHeight >= 400 && i.style.visibility !== 'hidden';
       }, null, { timeout: 16000 });
       const size = await desktop.locator('#productPreviewImage').evaluate(i => i.naturalWidth + '×' + i.naturalHeight);
       preview = 'loaded ' + size;
@@ -95,7 +95,7 @@ const mark = (status, name, detail = '') => {
       ['山姆全球购工具', 'https://chenzhe223-tech.github.io/sam-global-buy/'],
       ['山姆数据导入', 'https://chenzhe223-tech.github.io/sam-global-buy/sam-app-import.html']
     ];
-    const request = await desktop.context().request.newContext({ timeout: 25000 });
+    const request = await require('playwright').request.newContext({ timeout: 25000 });
     const links = await Promise.all(targets.map(async ([name, url]) => {
       try {
         const r = await request.get(url, { maxRedirects: 5 });
