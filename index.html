@@ -72,62 +72,78 @@ function renderProjectPreview(p){
  box.dataset.previewId=p.id;
  if(target){
   const shot='https://s.wordpress.com/mshots/v1/'+encodeURIComponent(target)+'?w=1280&h=720';
-  box.innerHTML='<div class="preview-label"><span>PROJECT PREVIEW</span><strong id="previewStatus">正在准备网页截图</strong></div><div class="preview-stage"><img id="productPreviewImage" alt="'+p.name+'公开网页预览截图" loading="eager" style="visibility:hidden"><div class="preview-fallback" id="previewFallback"><strong>正在生成网页预览…</strong><span>首次截图可能需要几秒，请稍候。</span></div></div><div class="preview-label"><span>来源：公开项目网页</span><span>截图服务可能延迟</span></div>';
+  box.innerHTML='<div class="preview-label"><span>PROJECT PREVIEW</span><strong id="previewStatus">正在准备网页截图</strong></div><div class="preview-stage"><img id="productPreviewImage" alt="'+p.name+'公开网页预览截图" loading="eager" style="visibility:hidden"><div class="preview-fallback" id="previewFallback"><strong>正在生成网页预览…</strong><span>首次截图可能需要几秒，请稍候。</span></div></div><div class="preview-label"><span>来源：公开项目网页</span><span>只展示真实截图</span></div>';
   const img=document.getElementById('productPreviewImage');
   const fb=document.getElementById('previewFallback');
   const label=document.getElementById('previewStatus');
   let attempt=0;
-  const maxAttempts=3;
+  const maxAttempts=4;
   function current(){return box.dataset.previewId===p.id}
   function fail(message){
    if(!current())return;
    img.style.display='none';
    fb.hidden=false;
-   fb.innerHTML='<strong>'+message+'</strong><span>截图暂不可用，但可以通过下方的真实项目入口直接访问。</span><button type="button" class="preview-retry" id="retryPreview">重新尝试截图 ↻</button>';
+   fb.innerHTML='<strong>'+message+'</strong><span>不会把截图服务的占位图当作成品。你仍可以通过下方的真实项目入口直接访问。</span><button type="button" class="preview-retry" id="retryPreview">重新尝试截图 ↻</button>';
    label.textContent='预览暂不可用';
-   document.getElementById('retryPreview').addEventListener('click',startPreview,{once:true});
+   const retry=document.getElementById('retryPreview');
+   if(retry)retry.addEventListener('click',startPreview,{once:true});
   }
   function requestShot(){
    if(!current())return;
    attempt++;
-   label.textContent=attempt===1?'正在获取网页截图…':'正在重试网页截图…';
+   label.textContent='正在获取真实网页截图（'+attempt+'/'+maxAttempts+'）…';
    img.style.display='block';
    img.style.visibility='hidden';
    img.onload=()=>{
     if(!current())return;
-    if(attempt<maxAttempts){
-     label.textContent='截图处理中…';
-     setTimeout(()=>requestShot(),1400);
-    }else{
-     img.style.visibility='visible';
-     fb.hidden=true;
-     label.textContent='网页预览';
+    const width=img.naturalWidth||0;
+    const height=img.naturalHeight||0;
+    // mShots returns a 400×300 "Generating Preview…" placeholder while the screenshot is being created.
+    if(width<=500&&height<=350){
+     if(attempt<maxAttempts){
+      label.textContent='截图仍在生成，稍后重试…';
+      setTimeout(requestShot,2200);
+     }else{
+      fail('截图服务仍在返回生成中占位图');
+     }
+     return;
     }
-   };
-   img.onerror=()=>{
-    if(!current())return;
-    if(attempt<maxAttempts)setTimeout(()=>requestShot(),1400);
-    else fail('暂时无法获取网页截图');
-   };
-   img.removeAttribute('src');setTimeout(()=>{if(current())img.src=shot},80);
-  }
-  function startPreview(){
+    if(width<640||height<400){
+     fail('截图尺寸异常（'+width+'×'+height+'）');
+     return;
+    }
+    img.style.visibility='visible';
+    fb.hidden=true;
+    label.textContent='真实网页截图 · '+width+'×'+height;
+  };
+  img.onerror=()=>{
    if(!current())return;
-   attempt=0;
-   img.style.display='block';
-   img.style.visibility='hidden';
-   fb.hidden=false;
-   fb.innerHTML='<strong>正在生成网页预览…</strong><span>首次截图可能需要几秒，请稍候。</span>';
-   label.textContent='正在准备网页截图';
-   const warmup=new Image();
-   let fired=false;
-   const begin=()=>{if(fired||!current())return;fired=true;setTimeout(requestShot,2600)};
-   warmup.onload=begin;
-   warmup.onerror=begin;
-   warmup.src=shot;
-   setTimeout(()=>{if(!fired&&current()){fired=true;requestShot()}},4500);
-  }
-  startPreview();
+   if(attempt<maxAttempts){
+    label.textContent='截图请求未成功，稍后重试…';
+    setTimeout(requestShot,2200);
+   }else fail('无法获取网页截图');
+  };
+  // A cache-buster forces the browser to ask mShots again after the warm-up request.
+  img.removeAttribute('src');
+  setTimeout(()=>{if(current())img.src=shot+'&retry='+Date.now()+'-'+attempt},80);
+ }
+ function startPreview(){
+  if(!current())return;
+  attempt=0;
+  img.style.display='block';
+  img.style.visibility='hidden';
+  fb.hidden=false;
+  fb.innerHTML='<strong>正在生成网页预览…</strong><span>首张截图可能需要几秒；未生成完成前不会显示为真实预览。</span>';
+  label.textContent='正在准备截图服务';
+  const warmup=new Image();
+  let fired=false;
+  const begin=()=>{if(fired||!current())return;fired=true;setTimeout(requestShot,3200)};
+  warmup.onload=begin;
+  warmup.onerror=begin;
+  warmup.src=shot;
+  setTimeout(()=>{if(!fired&&current()){fired=true;requestShot()}},4800);
+ }
+ startPreview();
  }else{
   box.innerHTML='<div class="preview-label"><span>PROJECT PREVIEW</span><strong>概念项目 · 非运行截图</strong></div><div class="preview-stage concept-preview"><div class="concept-preview-inner"><div class="concept-preview-mark">'+projectLogo(p)+'</div><strong>'+p.name+'</strong><small>'+p.en.toUpperCase()+'</small><span class="concept-label">概念探索 / 暂无公开运行页面</span></div></div><div class="preview-label"><span>这里展示的是品牌标识提案</span><span>不是应用运行截图</span></div>';
  }
