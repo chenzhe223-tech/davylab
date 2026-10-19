@@ -1,0 +1,17 @@
+{
+  "brand": "DAVYLAB",
+  "tagline": "把想法，做成能用的工具。",
+  "title": "",
+  "author": "DAVYLAB",
+  "digest": "",
+  "column": "",
+  "cover": "cover.png",
+  "sources_file": "sources.md",
+  "review_file": "review.md",
+  "status": "draft-prepared",
+  "publish_mode": "save_draft_only",
+  "human_approval_required": true,
+  "auto_publish_allowed": false,
+  "created_date": "YYYY-MM-DD",
+  "notes": []
+}
