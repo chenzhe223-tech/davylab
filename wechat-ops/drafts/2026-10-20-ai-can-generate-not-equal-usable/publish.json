@@ -1,0 +1,26 @@
+{
+  "brand": "DAVYLAB",
+  "tagline": "把想法，做成能用的工具。",
+  "title": "我用 AI 做了几个应用后，才发现：能生成，不等于能用",
+  "title_alternatives": [
+    "我不是程序员，也开始用 AI 做自己的产品了",
+    "AI 让我更容易做出应用，却没有让我更容易做好产品"
+  ],
+  "author": "DAVYLAB",
+  "digest": "从念头盒到 Dashboard Studio，记录一个普通人用 AI 做产品后，关于用户体验、真实反馈和持续迭代的体会。",
+  "column": "产品复盘与实验室",
+  "cover": null,
+  "cover_status": "待准备并确认真实封面素材",
+  "sources_file": "sources.md",
+  "review_file": "review.md",
+  "status": "draft-prepared",
+  "publish_mode": "save_draft_only",
+  "human_approval_required": true,
+  "auto_publish_allowed": false,
+  "created_date": "2026-10-20",
+  "notes": [
+    "当前为内容初稿，等待作者审核。",
+    "尚未交给 WorkBuddy，尚未在公众号后台创建草稿。",
+    "插图和产品截图需要作者选择真实素材后再准备封面和排版。"
+  ]
+}
