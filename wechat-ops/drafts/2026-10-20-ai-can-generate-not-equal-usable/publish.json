@@ -2,28 +2,30 @@
   "brand": "DAVYLAB",
   "tagline": "把想法，做成能用的工具。",
   "title": "我用 AI 做了几个应用后，才发现：能生成，不等于能用",
-  "title_alternatives": [
-    "我不是程序员，也开始用 AI 做自己的产品了",
-    "AI 让我更容易做出应用，却没有让我更容易做好产品"
-  ],
   "author": "DAVYLAB",
-  "digest": "从 AI 小白到持续开发多个产品，我开始学会先梳理需求、规划架构，再进入开发与验证。这是一次关于持续学习与产品思维的真实记录。",
+  "digest": "从着急生成到先做规划、再开发、持续验证，一个 AI 小白在真实产品实践中的成长记录。",
   "column": "从念头到产品 / 产品复盘与实验室",
-  "cover": "assets/davylab-first-article-cover.jpg",
-  "cover_status": "封面已上传至仓库 assets/ 并经作者确认（2026-10-20）",
+  "cover": "assets/cover-1800x766.jpg",
+  "share_card_cover": "assets/cover-square-1200x1200.jpg",
+  "body_has_title": false,
+  "body_has_cover": false,
+  "body_content_rule": "正文只包含引导语、段落、小标题和正文配图，不要重复标题栏中的文章标题；封面只在封面字段出现一次。",
+  "body_image_assets": [
+    "assets/dashboard-studio-versions-comparison.jpg",
+    "assets/architecture-and-validation-mobile.jpg",
+    "assets/davylab-product-practice-gallery.jpg"
+  ],
+  "asset_delivery": "图片文件在本地排版修复包中，尚未提交为 GitHub 二进制资源；执行 WorkBuddy 前需提供素材包或将图片上传到其工作目录。",
   "sources_file": "sources.md",
   "review_file": "review.md",
-  "status": "ready-for-workbuddy",
+  "status": "draft-prepared",
   "publish_mode": "save_draft_only",
   "human_approval_required": true,
   "auto_publish_allowed": false,
   "created_date": "2026-10-20",
   "notes": [
-    "已根据作者补充的 AI 转型过程重写正文。",
-    "正文引用的三张插图路径对应随稿素材包；需放入当前稿件目录的 assets 文件夹。",
-    "项目进展、安全能力及多端同步的表述需由作者按当前实际状态复核。",
-    "assets/ 四张配图已上传至仓库并核验可访问（2026-10-20）。",
-    "作者已确认 review.md 全部事项，status 翻转为 ready-for-workbuddy。",
-    "仍仅允许保存草稿；正式发布由作者本人手动完成。"
+    "请清空公众号编辑器中的旧正文后重新录入，避免旧品牌 banner 和标题图残留。",
+    "正文图片必须通过公众号编辑器上传，不依赖本地 file:// 路径。",
+    "未交给 WorkBuddy，未创建公众号后台草稿，未发布。"
   ]
 }
