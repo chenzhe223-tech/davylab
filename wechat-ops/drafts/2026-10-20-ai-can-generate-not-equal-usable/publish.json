@@ -7,10 +7,10 @@
     "AI 让我更容易做出应用，却没有让我更容易做好产品"
   ],
   "author": "DAVYLAB",
-  "digest": "从念头盒到 Dashboard Studio，记录一个普通人用 AI 做产品后，关于用户体验、真实反馈和持续迭代的体会。",
-  "column": "产品复盘与实验室",
-  "cover": null,
-  "cover_status": "待准备并确认真实封面素材",
+  "digest": "从 AI 小白到持续开发多个产品，我开始学会先梳理需求、规划架构，再进入开发与验证。这是一次关于持续学习与产品思维的真实记录。",
+  "column": "从念头到产品 / 产品复盘与实验室",
+  "cover": "assets/davylab-first-article-cover.jpg",
+  "cover_status": "已制作本地封面文件，需上传至仓库并由作者确认",
   "sources_file": "sources.md",
   "review_file": "review.md",
   "status": "draft-prepared",
@@ -19,8 +19,9 @@
   "auto_publish_allowed": false,
   "created_date": "2026-10-20",
   "notes": [
-    "当前为内容初稿，等待作者审核。",
-    "尚未交给 WorkBuddy，尚未在公众号后台创建草稿。",
-    "插图和产品截图需要作者选择真实素材后再准备封面和排版。"
+    "已根据作者补充的 AI 转型过程重写正文。",
+    "正文引用的三张插图路径对应随稿素材包；需放入当前稿件目录的 assets 文件夹。",
+    "项目进展、安全能力及多端同步的表述需由作者按当前实际状态复核。",
+    "未交给 WorkBuddy，未创建公众号后台草稿，未发布。"
   ]
 }
