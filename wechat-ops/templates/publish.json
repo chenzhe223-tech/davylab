@@ -1,17 +1,35 @@
 {
+  "$schema": "content-package.schema.json",
+  "schema_version": "2.0",
   "brand": "DAVYLAB",
   "tagline": "把想法，做成能用的工具。",
+  "content_type": "article",
   "title": "",
   "author": "DAVYLAB",
   "digest": "",
   "column": "",
-  "cover": "cover.png",
+  "tags": [],
+  "body_file": "article.md",
   "sources_file": "sources.md",
   "review_file": "review.md",
   "status": "draft-prepared",
+  "review_blockers": [],
   "publish_mode": "save_draft_only",
   "human_approval_required": true,
   "auto_publish_allowed": false,
-  "created_date": "YYYY-MM-DD",
+  "created_date": "",
+  "assets": {
+    "cover": { "path": "", "url": "" },
+    "images": [],
+    "video": { "path": "", "url": "", "duration_seconds": null, "aspect_ratio": "" },
+    "audio": { "path": "", "url": "", "duration_seconds": null },
+    "transcript_file": "",
+    "subtitles_file": ""
+  },
+  "metadata": {
+    "image_post": { "order_reviewed": false },
+    "video": { "script_file": "video.md", "thumbnail_path": "", "subtitle_language": "" },
+    "podcast": { "episode_number": "", "host": "DAVYLAB", "guest": "", "show_notes_file": "podcast.md", "transcript_file": "" }
+  },
   "notes": []
 }
