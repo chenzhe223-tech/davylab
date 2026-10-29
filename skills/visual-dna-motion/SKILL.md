@@ -1,6 +1,6 @@
 ---
 name: visual-dna-motion
-version: 0.1.0
+version: 0.2.0
 description: |
   DAVYLAB Visual DNA Motion System — a reusable, brand-aware motion design and frontend animation system built on GSAP, Motion, and Three.js.
   Use for website/app motion audits, animation architecture, interaction states, scroll storytelling, 3D scenes, accessibility, performance, and reusable motion tokens.
@@ -67,6 +67,22 @@ Initial intent:
 - Continuous ambient movement: rare, slow, pauseable, and never required to understand content.
 
 These are starting ranges, not rigid laws. Respect reduced-motion preferences and avoid delaying critical actions.
+
+### 5. Mandatory selection, preview, and tuning experience
+
+Whenever a UI lets users choose an animation effect, the choice must be demonstrated, not merely named. Treat this as a release-blocking acceptance requirement.
+
+- **Selection starts a matching preview:** clicking/tapping a motion option updates the selected state and plays that exact effect in a dedicated preview area. Do not substitute a static thumbnail, unrelated loop, or text-only state change.
+- **Preview duration:** provide a short, controllable preview of approximately 1–5 seconds. Keep looping previews within the chosen total preview window; avoid perpetual loops by default.
+- **Professional microcopy:** each effect has a concise, specific description that explains its visual behavior, suitable use cases, and the UX purpose it serves. Avoid vague labels such as “cool”, “smooth”, or “premium”.
+- **Real tuning controls:** expose meaningful controls such as duration, intensity/distance, direction, easing, and stagger where relevant. Do not show controls that do not affect the selected effect. Changes must update the preview and configuration.
+- **Consistent selection state:** the selected option, preview title, description, control values, and exported configuration must always refer to the same effect. Reset restores documented defaults for the current effect, not unrelated global settings.
+- **Portable configuration:** where the product supports handoff, export a readable JSON configuration with a schema/version, effect identifier, description, timing, easing, motion parameters, and reduced-motion behavior. Export only actual selected values; never claim the JSON has been applied to another product automatically.
+- **Accessible behavior:** use semantic buttons and visible focus, support keyboard/touch, announce relevant status changes, and honor `prefers-reduced-motion`. When reduced motion is active, preserve the selected effect and its description while keeping the preview stable and clearly explaining why motion is suppressed.
+- **Failure resilience:** preview-engine failure must not hide the library, descriptions, controls, or export path. Do not report a preview as running if no animation started.
+- **Test the contract:** automate selecting multiple effects, checking preview state and description, tuning values, verifying JSON consistency, testing export, reduced-motion behavior, and responsive overflow at desktop/tablet/mobile widths.
+
+The Motion Lab should be a usable motion decision tool: **select → preview → understand → tune → export**.
 
 ### 5. Motion grammar
 
