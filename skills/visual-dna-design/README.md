@@ -41,3 +41,14 @@
 - 不把 Arial / Times New Roman 字体文件打包。
 - 不在未核验授权时自动转码或分发阿里巴巴普惠体、优设标题黑等字体。
 - 不修改与任务无关的页面；必须保留用户明确指定的冻结基线。
+
+
+## License
+
+- Skill instructions and written references: [CC BY 4.0](LICENSE-DOCS-CC-BY-4.0.md).
+- CSS, JavaScript and example code: [MIT](LICENSE-CODE-MIT.md).
+- Third-party font files are not included; each font's own license still applies.
+
+## Public source
+
+This skill is published in the public DAVYLAB repository: https://github.com/chenzhe223-tech/davylab/tree/main/skills/visual-dna-design
