@@ -83,4 +83,4 @@ Treat 3D as an optional feature module, not a global page dependency:
 
 ## Status
 
-Version 0.1.0 is the foundation milestone: system rules, tokens and a small GSAP adapter. It is not a claim that Motion or Three.js has been integrated into every DAVYLAB app. Follow-up milestones should add an interactive demo, engine-specific adapters, automated checks and integration into selected projects after each project's stack is audited.
+Version 0.1.0 contains the system rules, tokens and a small GSAP adapter. The first interactive Motion Lab has now been added to the DAVYLAB website repository at [`motion-lab/index.html`](https://github.com/chenzhe223-tech/chenzhe223-tech.github.io/blob/main/motion-lab/index.html), with Playwright smoke coverage for interaction and 1440/1024/390px horizontal overflow. The lab demonstrates GSAP, Motion's vanilla API and an optional Three.js scene; it does not mean Motion or Three.js have been integrated into every DAVYLAB app. Next steps are deeper engine-specific adapters, real-device validation, and integration into selected projects after each project's stack is audited.
