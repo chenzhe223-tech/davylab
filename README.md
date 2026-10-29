@@ -22,3 +22,4 @@ GitHub Actions 自动发布到 GitHub Pages。每次向 `main` 推送提交后�
 ## 开放技能 / Open Skills
 
 - [Visual DNA Design](skills/visual-dna-design/README.md)：可复用的前端视觉设计 Skill，覆盖去模板化 UI、满铺布局、六种布局、导航定制、高级配色、字体系统和响应式验收。
+- [Visual DNA Motion System](skills/visual-dna-motion/README.md)：以 GSAP、Motion、Three.js 为核心引擎的可复用动效系统，覆盖动效原则、Token、响应式与无障碍、性能和引擎分工。
