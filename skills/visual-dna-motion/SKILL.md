@@ -82,7 +82,7 @@ Whenever a UI lets users choose an animation effect, the choice must be demonstr
 - **Failure resilience:** preview-engine failure must not hide the library, descriptions, controls, or export path. Do not report a preview as running if no animation started.
 - **Test the contract:** automate selecting multiple effects, checking preview state and description, tuning values, verifying JSON consistency, testing export, reduced-motion behavior, and responsive overflow at desktop/tablet/mobile widths.
 
-The Motion Lab should be a usable motion decision tool: **select → preview → understand → tune → export**.
+The Motion Lab should be a usable motion decision tool: **select → preview → understand → tune → export**. The production workflow should also support **preset → import → generate integration code** so users can start from a known motion personality, reopen a saved configuration, and copy an engine-specific starter snippet. Generated code is a starting point, not a claim of drop-in compatibility: selectors, framework lifecycle, easing mappings, existing transform ownership, and reduced-motion policy must be checked in the target app.
 
 ### 5. Motion grammar
 
