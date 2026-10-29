@@ -14,6 +14,7 @@ The engines are complementary, not mandatory dependencies. A static HTML site sh
 - [Skill instructions](SKILL.md)
 - [Motion tokens](assets/motion-tokens.css)
 - [Framework-neutral GSAP adapter](assets/davylab-motion.js)
+- [Interactive Motion Lab](https://chenzhe223-tech.github.io/motion-lab/)
 
 ## Quick start: static HTML
 
@@ -81,6 +82,10 @@ Treat 3D as an optional feature module, not a global page dependency:
 5. On teardown, cancel animation frames and dispose geometries, materials, textures, controls and renderer.
 6. Under reduced motion, show a stable scene or poster without continuous movement.
 
-## Status
+## Interactive Motion Lab and acceptance contract
 
-Version 0.1.0 contains the system rules, tokens and a small GSAP adapter. The first interactive Motion Lab has now been added to the DAVYLAB website repository at [`motion-lab/index.html`](https://github.com/chenzhe223-tech/chenzhe223-tech.github.io/blob/main/motion-lab/index.html), with Playwright smoke coverage for interaction and 1440/1024/390px horizontal overflow. The lab demonstrates GSAP, Motion's vanilla API and an optional Three.js scene; it does not mean Motion or Three.js have been integrated into every DAVYLAB app. Next steps are deeper engine-specific adapters, real-device validation, and integration into selected projects after each project's stack is audited.
+Version 0.2.0 makes selectable preview a mandatory part of the system: **select → preview → understand → tune → export**. The Motion Lab lives in the DAVYLAB website repository at [`motion-lab/index.html`](https://github.com/chenzhe223-tech/chenzhe223-tech.github.io/blob/main/motion-lab/index.html) and the intended public entry is [`https://chenzhe223-tech.github.io/motion-lab/`](https://chenzhe223-tech.github.io/motion-lab/).
+
+The library offers six named motion patterns, a matching 1–5 second preview, concise use-case descriptions, tuning controls, and a JSON configuration export. Playwright smoke coverage checks effect selection, actual Web Animations API activity, selected description, tuned duration, JSON consistency, download naming, and responsive overflow at 1440/1024/390px.
+
+The lab also demonstrates GSAP, Motion's vanilla API and an optional Three.js scene; this does not mean Motion or Three.js have been integrated into every DAVYLAB app. Real-device/browser validation and live deployment verification remain separate acceptance steps and must not be inferred from a merged commit.
