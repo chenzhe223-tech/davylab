@@ -102,13 +102,105 @@
     };
   }
 
+  function resolveTargets(target) {
+    if (!target) return [];
+    if (typeof target === "string") {
+      return global.document ? Array.prototype.slice.call(global.document.querySelectorAll(target)) : [];
+    }
+    if (target.nodeType === 1 && typeof target.animate === "function") return [target];
+    if (typeof target.length === "number") return Array.prototype.slice.call(target).filter(function (item) {
+      return item && item.nodeType === 1 && typeof item.animate === "function";
+    });
+    return [];
+  }
+
+  function applyPreset(target, config) {
+    var options = config || {};
+    var targets = resolveTargets(target);
+    if (!targets.length || prefersReducedMotion()) return noop();
+
+    var effect = options.effect || "fade-up";
+    var rawDuration = Number(options.durationMs);
+    var durationMs = Math.max(100, Math.min(5000, Number.isFinite(rawDuration) ? rawDuration : 560));
+    var rawIntensity = Number(options.intensityPercent);
+    var intensity = Math.max(0, Math.min(1.5, (Number.isFinite(rawIntensity) ? rawIntensity : 100) / 100));
+    var rawDistance = Number(options.distancePx);
+    var distance = Math.max(0, Math.min(200, Number.isFinite(rawDistance) ? rawDistance : 18)) * intensity;
+    var rawStagger = Number(options.globalTokens && options.globalTokens.staggerMs);
+    var staggerMs = Math.max(0, Math.min(1000, Number.isFinite(rawStagger) ? rawStagger : 0));
+    var easing = typeof options.easing === "string" ? options.easing : "cubic-bezier(.2,.75,.25,1)";
+    var looping = options.playback === "loop";
+    var cycleDuration = looping ? Math.max(100, durationMs / 2) : durationMs;
+    var iterations = looping ? 2 : 1;
+    var direction = options.direction || "up";
+    var offset = { up: [0, -distance], down: [0, distance], left: [-distance, 0], right: [distance, 0] }[direction] || [0, -distance];
+    var animations = [];
+
+    function transform(x, y, scale, rotate) {
+      return "translate(" + x + "px," + y + "px) scale(" + scale + ") rotate(" + rotate + "deg)";
+    }
+
+    targets.forEach(function (element, index) {
+      var frames;
+      if (effect === "spring") {
+        frames = [
+          { transform: transform(0, 0, 0.82, 0) },
+          { transform: transform(0, 0, 1.08, 0) },
+          { transform: transform(0, 0, 0.97, 0) },
+          { transform: transform(0, 0, 1, 0) }
+        ];
+      } else if (effect === "slide") {
+        frames = [
+          { opacity: 0, transform: transform(offset[0], offset[1], 0.98, 0) },
+          { opacity: 1, transform: transform(0, 0, 1, 0) }
+        ];
+      } else if (effect === "blur") {
+        frames = [
+          { opacity: 0, filter: "blur(" + (10 * intensity) + "px)", transform: transform(0, 0, 0.98, 0) },
+          { opacity: 1, filter: "blur(0px)", transform: transform(0, 0, 1, 0) }
+        ];
+      } else if (effect === "orbit") {
+        frames = [
+          { transform: transform(0, 0, 0.96, -18 * intensity) },
+          { transform: transform(0, 0, 1, 342 * intensity) }
+        ];
+      } else if (effect === "stagger" || effect === "fade-up") {
+        frames = [
+          { opacity: 0, transform: transform(effect === "stagger" ? 0 : offset[0], effect === "stagger" ? -distance * 0.5 : offset[1], 0.96, 0) },
+          { opacity: 1, transform: transform(0, 0, 1, 0) }
+        ];
+      } else {
+        // Unknown IDs fail safely to a restrained fade-up instead of throwing.
+        frames = [
+          { opacity: 0, transform: transform(0, -distance, 0.98, 0) },
+          { opacity: 1, transform: transform(0, 0, 1, 0) }
+        ];
+      }
+
+      animations.push(element.animate(frames, {
+        duration: cycleDuration,
+        delay: effect === "stagger" ? staggerMs * index : 0,
+        easing: easing,
+        fill: "both",
+        iterations: iterations
+      }));
+    });
+
+    return function cleanupPreset() {
+      animations.forEach(function (animation) {
+        try { animation.cancel(); } catch (error) { /* no-op cleanup */ }
+      });
+    };
+  }
+
   global.DAVYLABMotion = Object.freeze({
-    version: "0.1.0",
+    version: "0.2.0",
     prefersReducedMotion: prefersReducedMotion,
     canAnimate: canAnimate,
     scope: scope,
     reveal: reveal,
     scrollReveal: scrollReveal,
+    applyPreset: applyPreset,
     stopAmbientOnHidden: stopAmbientOnHidden
   });
 })(window);
