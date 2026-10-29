@@ -18,3 +18,7 @@ DAVYLAB 是我的个人 AI 产品实践与轻量应用开发品牌，希望让�
 
 ## 发布
 GitHub Actions 自动发布到 GitHub Pages。每次向 `main` 推送提交后，工作流会重新部署。
+
+## 开放技能 / Open Skills
+
+- [Visual DNA Design](skills/visual-dna-design/README.md)：可复用的前端视觉设计 Skill，覆盖去模板化 UI、满铺布局、六种布局、导航定制、高级配色、字体系统和响应式验收。

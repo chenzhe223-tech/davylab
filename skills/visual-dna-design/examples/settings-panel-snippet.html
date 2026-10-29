@@ -1,0 +1,111 @@
+<!--
+  可嵌入任意应用设置页的控件示例。
+  1. 先引入 ../assets/visual-dna.css
+  2. 按现有 DOM 映射 .vd-site-shell / .vd-sidebar / .vd-main / .vd-main-inner / .vd-workspace-grid
+  3. 在文档底部引入 ../assets/visual-dna.js
+  注意：这是控件示例，不是完整业务应用；路由与模块内容由宿主应用自己提供。
+-->
+<section class="vd-settings-demo" aria-labelledby="vd-settings-title">
+  <header>
+    <p class="vd-settings-kicker">VISUAL DNA / SETTINGS</p>
+    <h2 id="vd-settings-title">外观与布局</h2>
+    <p>选择布局、导航、主题和字体，页面会即时预览；设置默认保存在当前浏览器。</p>
+  </header>
+
+  <fieldset>
+    <legend>页面布局</legend>
+    <div class="vd-choice-grid">
+      <button type="button" data-vd-set-layout="editorial" aria-pressed="true">编辑式布局</button>
+      <button type="button" data-vd-set-layout="balanced" aria-pressed="false">平衡网格</button>
+      <button type="button" data-vd-set-layout="vertical" aria-pressed="false">纵向流程</button>
+      <button type="button" data-vd-set-layout="compact" aria-pressed="false">分析聚焦</button>
+      <button type="button" data-vd-set-layout="bento" aria-pressed="false">Bento 拼贴</button>
+      <button type="button" data-vd-set-layout="split" aria-pressed="false">左右分栏</button>
+    </div>
+    <label>列宽比例 <input type="range" min="35" max="65" step="5" value="50" data-vd-balance></label>
+    <label>模块间距 <input type="range" min="12" max="32" step="2" value="22" data-vd-gap></label>
+  </fieldset>
+
+  <fieldset>
+    <legend>导航位置</legend>
+    <div class="vd-choice-grid">
+      <button type="button" data-vd-set-nav="top">顶部</button>
+      <button type="button" data-vd-set-nav="left">左侧</button>
+      <button type="button" data-vd-set-nav="right">右侧</button>
+      <button type="button" data-vd-set-nav="bottom">底部</button>
+      <button type="button" data-vd-set-nav="floating">悬浮</button>
+      <button type="button" data-vd-set-nav="hidden">隐藏</button>
+    </div>
+    <button type="button" class="vd-button" data-vd-toggle-collapse aria-expanded="true">收起 / 展开导航</button>
+    <button type="button" class="vd-button" data-vd-open-nav aria-expanded="false">导航入口 / 打开隐藏导航</button>
+  </fieldset>
+
+  <fieldset>
+    <legend>配色主题</legend>
+    <div class="vd-choice-grid">
+      <button type="button" data-vd-set-theme="editorial">纸感编辑</button>
+      <button type="button" data-vd-set-theme="graphite">石墨荧光</button>
+      <button type="button" data-vd-set-theme="coastal">海雾青绿</button>
+      <button type="button" data-vd-set-theme="midnight">午夜青蓝</button>
+      <button type="button" data-vd-set-theme="terracotta">陶土暖调</button>
+      <button type="button" data-vd-set-theme="classic">经典蓝紫</button>
+    </div>
+    <div class="vd-color-grid">
+      <label>页面背景 <input type="color" value="#F3EFE6" data-vd-color="bg"></label>
+      <label>面板底色 <input type="color" value="#FCFAF5" data-vd-color="panel"></label>
+      <label>主文字色 <input type="color" value="#2A2E28" data-vd-color="ink"></label>
+      <label>次级文字色 <input type="color" value="#70776E" data-vd-color="muted"></label>
+      <label>边框色 <input type="color" value="#DCD7CB" data-vd-color="line"></label>
+      <label>强调色 <input type="color" value="#60764F" data-vd-color="accent"></label>
+      <label>导航底色 <input type="color" value="#252D27" data-vd-color="sidebar"></label>
+    </div>
+  </fieldset>
+
+  <fieldset>
+    <legend>字体选择</legend>
+    <label>英文字体
+      <select data-vd-font-en-select>
+        <option value="inter">Inter</option>
+        <option value="sourceSans3">Source Sans 3</option>
+        <option value="dmSans">DM Sans</option>
+        <option value="spaceGrotesk">Space Grotesk</option>
+        <option value="playfairDisplay">Playfair Display</option>
+        <option value="manrope">Manrope</option>
+        <option value="plusJakartaSans">Plus Jakarta Sans</option>
+        <option value="jetBrainsMono">JetBrains Mono</option>
+        <option value="arialCompat">Arial 兼容（Liberation Sans）</option>
+        <option value="timesCompat">Times 兼容（Liberation Serif）</option>
+      </select>
+    </label>
+    <label>中文字体
+      <select data-vd-font-cn-select>
+        <option value="notoSansSC">思源黑体 Noto Sans SC</option>
+        <option value="notoSerifSC">思源宋体 Noto Serif SC</option>
+        <option value="lxgwWenKai">霞鹜文楷 LXGW WenKai</option>
+        <option value="smileySans">得意黑 Smiley Sans</option>
+        <option value="alibabaPuHuiTi">阿里巴巴普惠体</option>
+        <option value="zcoolKuaiLe">站酷快乐体</option>
+        <option value="youSheBiaoTiHei">优设标题黑</option>
+        <option value="chironGoRound">昭源环方</option>
+      </select>
+    </label>
+    <p class="vd-font-example"><span class="vd-font-cjk">让可能发生 · 页面布局与品牌表达</span><br><span class="vd-latin">Inter / Space Grotesk / JetBrains Mono · 012345</span></p>
+  </fieldset>
+  <p role="status" aria-live="polite" data-vd-status>设置将保存在当前浏览器。</p>
+</section>
+
+<style>
+.vd-settings-demo { display:grid; gap:18px; color:var(--vd-ink); }
+.vd-settings-demo header p { color:var(--vd-muted); }
+.vd-settings-demo fieldset { min-width:0; border:1px solid var(--vd-line); border-radius:var(--vd-radius); padding:14px; }
+.vd-settings-demo legend { padding:0 6px; font-size:12px; font-weight:700; }
+.vd-choice-grid,.vd-color-grid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:8px; }
+.vd-settings-demo button,.vd-settings-demo select { min-height:40px; border:1px solid var(--vd-line); border-radius:calc(var(--vd-radius) - 1px); padding:8px 10px; background:var(--vd-control); color:var(--vd-ink); cursor:pointer; }
+.vd-settings-demo button[aria-pressed="true"] { background:var(--vd-accent-soft); border-color:var(--vd-accent); }
+.vd-color-grid { margin-top:12px; }
+.vd-color-grid label,.vd-settings-demo fieldset>label { display:grid; gap:7px; font-size:11px; }
+.vd-color-grid input { width:100%; min-height:32px; }
+.vd-settings-demo fieldset>label { margin-top:10px; }
+.vd-font-example { border:1px solid var(--vd-line); border-radius:var(--vd-radius); background:var(--vd-control); padding:12px; line-height:1.8; }
+@media(max-width:700px){.vd-choice-grid,.vd-color-grid{grid-template-columns:repeat(2,minmax(0,1fr));}}
+</style>
